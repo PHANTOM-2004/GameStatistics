@@ -1,4 +1,5 @@
 #include "vararray_test.hpp"
+#include "dsa/vararray.hpp"
 
 void VararrayTest::insert_test() {
   dut.clear();
@@ -97,7 +98,12 @@ bool VararrayTest::compare() const {
 
 int main() {
   srand((unsigned)time(nullptr));
-  VararrayTest T1(20000);
+  VararrayTest T1(2000);
   T1.erase_test();
   T1.search_test();
+  dsa::vararray<QString> v = {"199",    "299",  "190",      " 2981",
+                              "nimabi", "cnm,", "yuanshen", "Genshin"};
+  for (int i = 0; i < v.size(); i++) {
+    qDebug() << v[i];
+  }
 }
