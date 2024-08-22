@@ -116,5 +116,5 @@ target_link_libraries(GameStatistic PRIVATE Qt6::Widgets)
 qt_finalize_executable(GameStatistic)
 
 # #####################################################################
-# add_subdirectory(tests)
+add_subdirectory(tests)
 
