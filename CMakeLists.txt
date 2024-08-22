@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 3.25)
 project(GameStatistic VERSION 0.1 LANGUAGES CXX)
 
 message("[CHECK]Running environment checking")
-######################################################################
+# #####################################################################
 # check platform
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Linux")
   message(FATAL_ERROR "This project only supports Linux platforms.")
 endif()
 
-######################################################################
+# #####################################################################
 # check CXX compiler
 # compiler must be g++ or clang++
 # g++
@@ -50,7 +50,7 @@ else()
   "[FAIL]This project requires g++ or clang++ as the compiler.")
 endif()
 
-######################################################################
+# #####################################################################
 # check qt version
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
@@ -62,7 +62,7 @@ if(${QT_VERSION} LESS 6.1.0 AND ${QT_VERSION} LESS 7.0.0)
 endif()
 
 message("[PASS]Compiler and platform checks passed. Continuing with configuration...")
-######################################################################
+# #####################################################################
 
 
 set(CMAKE_AUTOUIC ON)
@@ -71,7 +71,8 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-######################################################################
+set(CMAKE_CXX_EXTENSIONS OFF)
+# #####################################################################
 message("compiler information:\n${COMPILER_VERSION_OUTPUT}")
 message("generator information: ${CMAKE_GENERATOR}")
 message("cmake information: version ${CMAKE_VERSION}")
@@ -84,8 +85,8 @@ add_compile_definitions(
   # QT_NO_DEBUG_OUTPUT
 )
 
-######################################################################
-file(GLOB_RECURSE HPP_SOURCES "include/*.hpp" "resources/*")
+# #####################################################################
+file(GLOB_RECURSE HPP_SOURCES "include/*.hpp" "resources/*" "include/*.tcc")
 file(GLOB_RECURSE CC_SOURCES "src/*.cc")
 file(GLOB_RECURSE QT_RESOURCES "src/*.ui")
 
@@ -102,7 +103,7 @@ foreach(f IN LISTS PROJECT_SOURCES)
 endforeach()
 message("Source files end")
 
-######################################################################
+# #####################################################################
 qt_add_executable(GameStatistic
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
@@ -114,6 +115,6 @@ target_link_libraries(GameStatistic PRIVATE Qt6::Widgets)
 
 qt_finalize_executable(GameStatistic)
 
-######################################################################
+# #####################################################################
 # add_subdirectory(tests)
 
