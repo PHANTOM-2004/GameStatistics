@@ -178,7 +178,7 @@ namespace dsa {
 
 template <typename T>
 vararray<T>::vararray(size_type const size) : _size(size >= 0 ? size : 0) {
-  qDebug() << "Call constructor";
+  // qDebug() << "Call constructor";
   _capacity = _size >= according_max_size() ? _size * ratio : DEFAULT_CAPACITY;
   _data = new (std::nothrow) T[_capacity]{};
   Q_ASSERT(_data);

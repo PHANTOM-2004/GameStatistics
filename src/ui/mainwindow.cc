@@ -1,10 +1,10 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
+#include <qstringliteral.h>
 
-MainWindow::MainWindow (QWidget *parent)
-    : QMainWindow (parent), ui (new Ui::MainWindow)
-{
-  ui->setupUi (this);
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
+  ui->setupUi(this);
 
   /*---------------------------------------------------------------------------*/
   initSportsPage();
@@ -13,7 +13,7 @@ MainWindow::MainWindow (QWidget *parent)
   /*---------------------------------------------------------------------------*/
 }
 
-MainWindow::~MainWindow () { delete ui; }
+MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::initMenuBar() {
   // software info
@@ -30,7 +30,6 @@ void MainWindow::showSoftwareInfo() {
   qDebug() << "Show Software";
   softwareInfo->show();
 }
-
 
 void MainWindow::showBuildInfo() {
   qDebug() << "Show Build information";
@@ -63,7 +62,6 @@ void MainWindow::initSoftwareInfo() {
           &MainWindow::showSoftwareInfo);
 }
 
-
 void MainWindow::initBuildInfo() {
   static QString const newline = "<br>";
   static QString const buildInfoTextFmt =
@@ -71,11 +69,11 @@ void MainWindow::initBuildInfo() {
       ;
 
   static QString const compiler_info =
-      QString(COMPILER_VERION).replace("\n", newline);
+      QStringLiteral(COMPILER_VERION).replace("\n", newline);
   static QString const generator_info =
-      QString(GENERATOR).replace("\n", newline);
-  static QString const cmake_version = QString(CMAKE_VERSION);
-  static QString const qt_version = QString(QT6_VERSION);
+      QStringLiteral(GENERATOR).replace("\n", newline);
+  static QString const cmake_version = QStringLiteral(CMAKE_VERSION);
+  static QString const qt_version = QStringLiteral(QT6_VERSION);
 
   buildInfo = new QMessageBox(this);
   buildInfo->setWindowTitle(tr("Build Information"));
