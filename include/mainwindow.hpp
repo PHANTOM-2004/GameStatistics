@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include "dsa/statistic.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,10 +34,14 @@ private:
 
   void initSportsPage();
 
+  void initSportTable();
+
   void on_sports_submit_button_clicked();
 
 private:
   Ui::MainWindow *ui;
+
+  dsa::Statistic statistic;
 
   /// \brief action when clicked the software information in menu
   QAction *softwareInfoAction;
