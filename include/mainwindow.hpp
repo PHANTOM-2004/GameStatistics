@@ -36,7 +36,6 @@ private:
 
   void initSportTable();
 
-  void on_sports_submit_button_clicked();
 
 private:
   Ui::MainWindow *ui;
