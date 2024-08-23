@@ -1,5 +1,6 @@
 
 #pragma once
+#include <qcombobox.h>
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -38,10 +39,21 @@ private:
   
   void initScoresPage();
 
+  void initScoreInputBox();
+
+  void initScoreSelectBox();
+
   void updateSportsInfo(int const index);
 
   void updateSportsInfoLabel(int const index);
 
+  void onClearButtonClicked();
+
+  void clearScoreInput();
+
+  void resetCountryCombo();
+
+  void initCountryCombo(QComboBox * combo);
 
 private:
   Ui::MainWindow *ui;

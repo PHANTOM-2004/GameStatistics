@@ -80,7 +80,7 @@
      <attribute name="title">
       <string>Scores</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="submitButton">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -99,7 +99,7 @@
        <string>submit</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="clearButton">
       <property name="geometry">
        <rect>
         <x>160</x>
@@ -224,6 +224,11 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
       </widget>
       <widget class="QLineEdit" name="countryScoreLineEdit1">
        <property name="geometry">
@@ -243,6 +248,11 @@
          <width>161</width>
          <height>51</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
        </property>
       </widget>
       <widget class="QLineEdit" name="countryScoreLineEdit2">
@@ -274,6 +284,11 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
       </widget>
       <widget class="QComboBox" name="countryComboBox4">
        <property name="geometry">
@@ -283,6 +298,11 @@
          <width>161</width>
          <height>51</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
        </property>
       </widget>
       <widget class="QLineEdit" name="countryScoreLineEdit4">
@@ -304,6 +324,11 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
       </widget>
       <widget class="QLineEdit" name="countryScoreLineEdit5">
        <property name="geometry">
@@ -315,7 +340,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="scoreLabel">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -334,7 +359,7 @@
         <string>score 1</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="scoreLabel2">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -353,7 +378,7 @@
         <string>score 2</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="scoreLabel3">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -372,7 +397,7 @@
         <string>score 3</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="scoreLabel4">
        <property name="geometry">
         <rect>
          <x>390</x>
@@ -391,7 +416,7 @@
         <string>score 4</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="scoreLabel5">
        <property name="geometry">
         <rect>
          <x>390</x>
