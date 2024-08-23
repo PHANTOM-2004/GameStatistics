@@ -21,19 +21,19 @@ public:
 
   /// \brief getter for the count of countries
   /// \return the count of countries
-  inline int country_count() const { return _countries_count; }
+  int country_count() const { return _countries_count; }
 
   /// \brief getter for the count of sport
   /// \return the count of sport
-  inline int sport_count() const { return _sports_count; }
+  int sport_count() const { return _sports_count; }
 
   /// \brief getter for the const pointer of sport array
   /// \return the count of sport array
-  inline Sport const *sport_data() const { return _SportsList; }
+  Sport const *sport_data() const { return _SportsList; }
 
   /// \brief getter for the const pointer of country array
   /// \return the count of country array
-  inline CountryScore const *country_data() const { return _CountriesList; }
+  CountryScore const *country_data() const { return _CountriesList; }
 
   /// \brief getter for the index of the name
   /// \param name the name of the sport to get
