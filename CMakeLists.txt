@@ -109,7 +109,7 @@ qt_add_executable(GameStatistic
         ${PROJECT_SOURCES}
     )
 
-target_compile_options(GameStatistic PUBLIC -Wall -Werror -static)
+target_compile_options(GameStatistic PUBLIC -Wall -Werror -static -glldb)
 
 target_link_libraries(GameStatistic PRIVATE Qt6::Widgets)
 

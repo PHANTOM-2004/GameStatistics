@@ -1,12 +1,13 @@
 
 #pragma once
-#include <qcombobox.h>
+
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include "dsa/statistic.hpp"
+#include <QComboBox>
 #include <QMainWindow>
 #include <QMessageBox>
-#include "dsa/statistic.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,10 +34,12 @@ private:
   /// \brief show the build information when clicked
   void showBuildInfo();
 
+  // ==============================================================
   void initSportsPage();
 
   void initSportTable();
-  
+
+  // ==============================================================
   void initScoresPage();
 
   void initScoreInputBox();
@@ -47,13 +50,19 @@ private:
 
   void updateSportsInfoLabel(int const index);
 
-  void onClearButtonClicked();
-
   void clearScoreInput();
 
   void resetCountryCombo();
 
-  void initCountryCombo(QComboBox * combo);
+  void initCountryCombo(QComboBox *combo);
+
+  void onClearButtonClicked();
+
+  bool scoreInputCheck(QComboBox const *combo, QLineEdit const *line,
+                       int const id) const;
+
+  void onSubmitButtonClicked();
+  // ==============================================================
 
 private:
   Ui::MainWindow *ui;

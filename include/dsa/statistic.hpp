@@ -22,6 +22,7 @@ public:
   inline CountryScore const *country_data() const { return _CountriesList; }
 
   int get_sport_index(QString const &name) const;
+
   int get_country_index(QString const &name) const;
 
   bool insert_scores(int const sport_index, vararray<country_score> &input);
