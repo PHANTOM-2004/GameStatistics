@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <qlineedit.h>
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -55,6 +56,8 @@ private:
   void resetCountryCombo();
 
   void initCountryCombo(QComboBox *combo);
+
+  void initScoreLineEdit(QLineEdit * line);
 
   void onClearButtonClicked();
 

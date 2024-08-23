@@ -25,6 +25,10 @@ public:
 
   int get_country_index(QString const &name) const;
 
+  QString const &get_country_name(int const index) const;
+
+  QString const &get_sport_name(int const index) const;
+
   bool insert_scores(int const sport_index, vararray<country_score> &input);
 
 private:

@@ -2,6 +2,7 @@
 #include "dsa/countryscore.hpp"
 #include "dsa/sport.hpp"
 #include "dsa/vararray.hpp"
+#include <qdebug.h>
 
 namespace dsa {
 
@@ -44,7 +45,7 @@ Sport::Sport(QString const &sport_name, SPORT_TYPE const type,
     : sport_name(sport_name), type(type), gender(gender) {}
 
 // =========================================================================
-// 
+//
 CountryScore::CountryScore(QString const &country_name)
     : country_name(country_name) {}
 
@@ -132,6 +133,16 @@ bool Statistic::insert_scores(int const sport_index,
   }
 
   return true;
+}
+
+QString const &Statistic::get_country_name(int const index) const {
+  Q_ASSERT(index >= 0 && index < country_count());
+  return _CountriesList[index].name();
+}
+
+QString const &Statistic::get_sport_name(int const index) const {
+  Q_ASSERT(index >= 0 && index < sport_count());
+  return _SportsList[index].name();
 }
 
 } // namespace dsa
