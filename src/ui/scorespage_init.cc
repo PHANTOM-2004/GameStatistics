@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 
-void MainWindow::initCountryCombo(QComboBox *combo) {
+void MainWindow::initCountryComboBox(QComboBox *combo) {
   Q_ASSERT(combo == ui->countryComboBox1 || combo == ui->countryComboBox2 ||
            combo == ui->countryComboBox3 || combo == ui->countryComboBox4 ||
            combo == ui->countryComboBox5);
@@ -63,11 +63,11 @@ void MainWindow::initScoreInputBox() {
   ui->submitButton->setStatusTip(tr("submit the scores"));
 
   // init country box
-  initCountryCombo(ui->countryComboBox1);
-  initCountryCombo(ui->countryComboBox2);
-  initCountryCombo(ui->countryComboBox3);
-  initCountryCombo(ui->countryComboBox4);
-  initCountryCombo(ui->countryComboBox5);
+  initCountryComboBox(ui->countryComboBox1);
+  initCountryComboBox(ui->countryComboBox2);
+  initCountryComboBox(ui->countryComboBox3);
+  initCountryComboBox(ui->countryComboBox4);
+  initCountryComboBox(ui->countryComboBox5);
   // init lineEdit
   initScoreLineEdit(ui->countryScoreLineEdit1);
   initScoreLineEdit(ui->countryScoreLineEdit2);

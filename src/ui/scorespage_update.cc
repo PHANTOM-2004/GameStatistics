@@ -45,7 +45,7 @@ void MainWindow::updateSportsInfo(int const index) {
   }
 }
 
-void MainWindow::resetCountryCombo() {
+void MainWindow::resetCountryComboBox() {
   ui->countryComboBox1->setCurrentIndex(-1);
   ui->countryComboBox2->setCurrentIndex(-1);
   ui->countryComboBox3->setCurrentIndex(-1);
@@ -63,7 +63,7 @@ void MainWindow::clearScoreInput() {
 
 void MainWindow::onClearButtonClicked() {
   qDebug() << "clear the score input";
-  resetCountryCombo();
+  resetCountryComboBox();
   clearScoreInput();
 }
 

@@ -1,4 +1,5 @@
-/// \file vararray template
+/// \file 
+/// \brief vararray template
 #pragma once
 
 #ifndef __MY_DSA_VECTOR_HPP

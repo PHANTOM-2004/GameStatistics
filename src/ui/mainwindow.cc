@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "QStringLiteral"
 
+dsa::Statistic MainWindow::statistic = dsa::Statistic{};
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
