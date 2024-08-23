@@ -148,13 +148,19 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>SF Pro Text</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
       </widget>
       <widget class="QLabel" name="sportsGenderLabel">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>260</x>
          <y>50</y>
-         <width>141</width>
+         <width>121</width>
          <height>51</height>
         </rect>
        </property>
@@ -171,9 +177,9 @@
       <widget class="QLabel" name="sportsTypeLabel">
        <property name="geometry">
         <rect>
-         <x>480</x>
+         <x>420</x>
          <y>50</y>
-         <width>141</width>
+         <width>181</width>
          <height>51</height>
         </rect>
        </property>

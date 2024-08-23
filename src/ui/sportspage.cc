@@ -3,9 +3,7 @@
 #include "ui_mainwindow.h"
 #include <qnamespace.h>
 
-void MainWindow::initSportsPage() {
-  initSportTable();
-}
+void MainWindow::initSportsPage() { initSportTable(); }
 
 void MainWindow::initSportTable() {
   auto sports = statistic.sport_data();
@@ -26,15 +24,13 @@ void MainWindow::initSportTable() {
     item_name->setTextAlignment(Qt::AlignCenter);
     item_name->setFlags(item_name->flags() & ~Qt::ItemIsEditable); // type
 
-    //type
-    auto item_type = new QTableWidgetItem(
-        cur.sport_type() == dsa::SCORE_TOP5 ? "score top 5" : "score top 3");
+    // type
+    auto item_type = new QTableWidgetItem(cur.sport_type_str());
     item_type->setTextAlignment(Qt::AlignCenter);
     item_type->setFlags(item_type->flags() & ~Qt::ItemIsEditable); // type
 
     // gender
-    auto item_gender =
-        new QTableWidgetItem(cur.sport_gender() == dsa::MEN ? "men" : "women");
+    auto item_gender = new QTableWidgetItem(cur.sport_gender_str());
     item_gender->setTextAlignment(Qt::AlignCenter);
     item_gender->setFlags(item_gender->flags() & ~Qt::ItemIsEditable); // type
 

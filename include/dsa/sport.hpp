@@ -1,5 +1,6 @@
 #pragma once
 
+#include <qstringliteral.h>
 #ifndef __SPORT_CLASS_HPP__
 #define __SPORT_CLASS_HPP__
 #include "dsa/vararray.hpp"
@@ -39,6 +40,14 @@ public:
   QString const &name() const { return sport_name; }
   SPORT_TYPE const sport_type() const { return type; }
   SPORT_GENDER const sport_gender() const { return gender; }
+  QString sport_type_str() const {
+    return type == SCORE_TOP5 ? QStringLiteral("score top 5")
+                              : QStringLiteral("score top 3");
+  }
+
+  QString sport_gender_str() const {
+    return gender == WOMEN ? QStringLiteral("women") : QStringLiteral("men");
+  }
 
   int get_points(int const rank) const;
 

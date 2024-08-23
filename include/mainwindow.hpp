@@ -35,6 +35,12 @@ private:
   void initSportsPage();
 
   void initSportTable();
+  
+  void initScoresPage();
+
+  void updateSportsInfo(int const index);
+
+  void updateSportsInfoLabel(int const index);
 
 
 private:
