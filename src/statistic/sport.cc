@@ -3,16 +3,22 @@
 
 namespace dsa {
 bool Sport::insert_scored_country(dsa::vararray<country_score> const &input) {
+  Q_ASSERT(!_inserted);
+
+  if (_inserted)
+    return false;
 
   Q_ASSERT((sport_type() == SCORE_TOP3 && input.size() == 3) ||
            (sport_type() == SCORE_TOP5 && input.size() == 5));
 
   countries = input;
+
+  _inserted = true;
   return true;
 }
 
 int Sport::get_points(int const rank) const {
-  Q_ASSERT(rank >= 0 && rank < sport_type());
+  Q_ASSERT(rank >= 1 && rank <= sport_type());
 
   if (sport_type() == SCORE_TOP3) {
     return top3_points[rank];
@@ -29,11 +35,11 @@ Sport::Sport(QString const &sport_name, SPORT_TYPE const type,
     : sport_name(sport_name), type(type), gender(gender) {}
 
 void Sport::show_info(Country const *const CountryList) const {
-  qDebug() << "SPORT INFO";
+  qDebug() << "[SPORT DEBUG INFO]";
   qDebug() << "sport:" << sport_name;
   qDebug() << "type:" << sport_type_str();
   qDebug() << "gender:" << sport_gender_str();
-  qDebug() << "related country:";
+  qDebug() << "related country:" << countries.size();
 
   Q_ASSERT((sport_type() == SCORE_TOP3 && countries.size() == 3) ||
            (sport_type() == SCORE_TOP5 && countries.size() == 5));

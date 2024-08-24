@@ -5,6 +5,7 @@
 #ifndef __COUNTRY_CLASS_HPP__
 #define __COUNTRY_CLASS_HPP__
 #include "dsa/vararray.hpp"
+#include "macro.hpp"
 #include <QString>
 namespace dsa {
 
@@ -37,7 +38,9 @@ public:
   /// \return  the name of the country
   QString const &name() const { return country_name; }
 
-  void show_info(Sport const* const SportList) const; // for debug
+#ifdef _DSA_DEBUG
+  void show_info(Sport const *const SportList) const; // for debug
+#endif
 
 private:
   /// \brief the struct records the sports in

@@ -125,10 +125,16 @@ void MainWindow::onSubmitButtonClicked() {
   if (!scoreInputCheck(ui->countryComboBox3, ui->countryScoreLineEdit3, 3))
     return;
 
-  if (!scoreInputCheck(ui->countryComboBox4, ui->countryScoreLineEdit4, 4))
+  bool const top5_type =
+      statistic.sport_data()[ui->sportsCombo->currentIndex()].sport_type() ==
+      dsa::SCORE_TOP5;
+
+  if (top5_type &&
+      !scoreInputCheck(ui->countryComboBox4, ui->countryScoreLineEdit4, 4))
     return;
 
-  if (!scoreInputCheck(ui->countryComboBox5, ui->countryScoreLineEdit5, 5))
+  if (top5_type &&
+      !scoreInputCheck(ui->countryComboBox5, ui->countryScoreLineEdit5, 5))
     return;
 
   dsa::vararray<dsa::country_score> input;
@@ -142,8 +148,7 @@ void MainWindow::onSubmitButtonClicked() {
   input.push_back({ui->countryComboBox3->currentIndex(),
                    ui->countryScoreLineEdit3->text().toInt()});
 
-  if (statistic.sport_data()[ui->sportsCombo->currentIndex()].sport_type() ==
-      dsa::SCORE_TOP5) {
+  if (top5_type) {
     input.push_back({ui->countryComboBox4->currentIndex(),
                      ui->countryScoreLineEdit4->text().toInt()});
 
@@ -151,9 +156,20 @@ void MainWindow::onSubmitButtonClicked() {
                      ui->countryScoreLineEdit5->text().toInt()});
   }
 
-  qDebug() << "sports: " << ui->sportsCombo->currentIndex();
+#ifdef _DSA_DEBUG
+  qDebug() << "sports: " << ui->sportsCombo->currentText();
   for (int i = 0; i < input.size(); i++) {
     qDebug() << "country: " << input[i].country_index
              << "score: " << input[i].score;
+  }
+#endif
+
+  bool ret = statistic.insert_scores(ui->sportsCombo->currentIndex(), input);
+
+  if (!ret) {
+    qDebug() << "already inserted";
+    QMessageBox::warning(ui->sportsSelectBox, tr("Duplicate Scores"),
+                         tr("You have already input scores of the sport:\n %1.")
+                             .arg(ui->sportsCombo->currentText()));
   }
 }

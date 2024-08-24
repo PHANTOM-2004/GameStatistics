@@ -1,5 +1,4 @@
 #include "dsa/statistic.hpp"
-#include "dsa/country.hpp"
 #include "macro.hpp"
 
 namespace dsa {
@@ -56,6 +55,10 @@ bool Statistic::insert_scores(int const sport_index,
 
   Q_ASSERT(sport_index >= 0 && sport_index < sport_count());
 
+  // score of the sport has already been input
+  if (sport(sport_index).inserted())
+    return false;
+
   // insert into sport first so that we get the rank
   Q_ASSERT(input.size() == 3 || input.size() == 5);
   std::sort(input.begin_pointer(), input.end_pointer());
@@ -71,13 +74,21 @@ bool Statistic::insert_scores(int const sport_index,
       rank++;
     }
     Q_ASSERT(cur.country_index >= 0 && cur.country_index < country_count());
+    Q_ASSERT(rank <= sport(sport_index).sport_type() && rank >= 1);
 
     country(cur.country_index)
         .insert_sport(SportList, sport_index, rank, cur.score);
   }
 
-  // show some debug information
+// show some debug information
+#ifdef _DSA_DEBUG
   sport(sport_index).show_info(CountryList);
+
+  for (int i = 0; i < input.size(); i++) {
+    auto const cur = input[i];
+    country(cur.country_index).show_info(SportList);
+  }
+#endif
 
   return true;
 }

@@ -1,6 +1,5 @@
 #include "dsa/country.hpp"
 #include "dsa/sport.hpp"
-#include "macro.hpp"
 
 namespace dsa {
 
@@ -35,9 +34,22 @@ bool Country::insert_sport(Sport *const SportList, int const sport_index,
   return true;
 }
 
-void Country::show_info(Sport const* const SportList) const {
-  qDebug() << "[COUNTR INFO]";
+void Country::show_info(Sport const *const SportList) const {
+  qDebug() << "[COUNTRY DEBUG INFO]";
   qDebug() << "country: " << name();
-  qDebug() << 1;
+  qDebug() << "women points: " << women_points_count;
+  qDebug() << "men points: " << men_points_count;
+  qDebug() << "sports involved below:";
+
+  qDebug() << "{";
+  for (int i = 0; i < sports.size(); i++) {
+    int const sport_index = sports[i].sport_index;
+    int const score = sports[i].score;
+    int const rank = sports[i].rank;
+    qDebug() << "[" << i << "]" << SportList[sport_index].name()
+             << " score:" << score << " rank:" << rank;
+  }
+  qDebug() << "}";
 }
+
 } // namespace dsa

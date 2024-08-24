@@ -1,10 +1,11 @@
-/// \file 
+/// \file
 /// \brief the definition of the sport class
 #pragma once
 
 #ifndef __SPORT_CLASS_HPP__
 #define __SPORT_CLASS_HPP__
 #include "dsa/vararray.hpp"
+#include "macro.hpp"
 #include <QString>
 #include <compare>
 
@@ -17,7 +18,7 @@ enum SPORT_TYPE { SCORE_TOP3 = 3, SCORE_TOP5 = 5 };
 /// men sports or women sports
 enum SPORT_GENDER { WOMEN, MEN };
 
-/// \brief the struct is designed to record the country that 
+/// \brief the struct is designed to record the country that
 /// win points in the sport
 struct country_score {
   /// \brief the index of the country array
@@ -65,7 +66,6 @@ public:
   ///  \return the name of the sport
   QString const &name() const { return sport_name; }
 
-
   ///  \brief getter for the sport score type of the sport
   ///  \return sport score type of the sport
   SPORT_TYPE const sport_type() const { return type; }
@@ -91,7 +91,15 @@ public:
   /// \return the points according to the rank of the sport
   int get_points(int const rank) const;
 
-  void show_info(Country const* const CountryList) const;//for debug
+  bool inserted() const {
+    Q_ASSERT((_inserted && countries.size()) ||
+             (!_inserted && countries.empty()));
+    return _inserted;
+  };
+
+#ifdef _DSA_DEBUG
+  void show_info(Country const *const CountryList) const; // for debug
+#endif
 
 private:
   /// \brief the name of the sport
@@ -105,6 +113,8 @@ private:
 
   /// \brief the countries that win points in the sport
   dsa::vararray<country_score> countries;
+
+  bool _inserted = false;
 
   /// \brief the score rules for top 5 score type
   /// rank i got top5_points[i] points
