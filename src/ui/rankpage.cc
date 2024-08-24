@@ -2,41 +2,53 @@
 #include "dsa/vararray.hpp"
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
-#include <algorithm>
 
 using dsa::Country;
 
-void MainWindow::sortCountry(dsa::vararray<dsa::Country> &countries,
+void MainWindow::initRankPage() {
+  // ui->sortComboBox;
+}
+
+void MainWindow::updateRankTable() {}
+
+void MainWindow::sortCountry(dsa::vararray<country_table_item> &countries,
                              sort_type const type) {
-  static auto cmp_by_men_points = [](Country const &a, Country const &b) {
-    return a.get_men_points() > b.get_men_points();
+  auto cmp_by_men_points = [](country_table_item const &a,
+                              country_table_item const &b) {
+    if (a.men_points != b.men_points)
+      return a.men_points > b.men_points;
+    return a.id < b.id;
   };
 
-  static auto cmp_by_women_points = [](Country const &a, Country const &b) {
-    return a.get_women_points() > b.get_women_points();
+  auto cmp_by_women_points = [](country_table_item const &a,
+                                country_table_item const &b) {
+    if (a.women_points != b.women_points)
+      return a.women_points > b.women_points;
+    return a.id < b.id;
   };
 
-  static auto cmp_by_total_points = [](Country const &a, Country const &b) {
-    return a.get_total_points() > b.get_total_points();
+  auto cmp_by_total_points = [](country_table_item const &a,
+                                country_table_item const &b) {
+    int const pa = a.men_points + a.women_points;
+    int const pb = b.men_points + b.women_points;
+    if (pa != pb)
+      return pa < pb;
+    return a.id < b.id;
   };
 
   Q_ASSERT(countries.size());
 
   switch (type) {
-
   case SORT_BY_MEN_POINTS:
-    std::stable_sort(countries.begin_pointer(), countries.end_pointer(),
-                     cmp_by_men_points);
+    countries.sort(cmp_by_men_points);
     break;
 
   case SORT_BY_WOMEN_POINTS:
-    std::stable_sort(countries.begin_pointer(), countries.end_pointer(),
-                     cmp_by_women_points);
+    countries.sort(cmp_by_women_points);
     break;
 
   case SORT_BY_TOTAL_POINTS:
-    std::stable_sort(countries.begin_pointer(), countries.end_pointer(),
-                     cmp_by_total_points);
+    countries.sort(cmp_by_total_points);
     break;
 
   case SORT_BY_COUNTRY_INDEX:

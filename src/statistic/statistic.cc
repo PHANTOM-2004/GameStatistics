@@ -61,7 +61,8 @@ bool Statistic::insert_scores(int const sport_index,
 
   // insert into sport first so that we get the rank
   Q_ASSERT(input.size() == 3 || input.size() == 5);
-  std::sort(input.begin_pointer(), input.end_pointer());
+  input.sort();
+  // std::sort(input.begin_pointer(), input.end_pointer());
   sport(sport_index).insert_scored_country(input);
 
   // the insert into the country

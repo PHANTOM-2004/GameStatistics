@@ -12,6 +12,7 @@ public:
   void insert_test();
   void erase_test();
   void search_test();
+  void sort_test();
 
 private:
   bool compare() const;

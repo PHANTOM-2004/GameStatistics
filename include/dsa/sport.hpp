@@ -38,7 +38,16 @@ struct country_score {
     else
       return std::strong_ordering::equal;
   }
+
+  bool operator<(country_score const &other) const {
+    return score > other.score;
+  }
+
+  bool operator==(country_score const &other) const {
+    return score == other.score;
+  }
 };
+
 
 class Country;
 

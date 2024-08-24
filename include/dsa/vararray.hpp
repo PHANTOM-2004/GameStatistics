@@ -2,11 +2,13 @@
 /// \brief vararray template
 #pragma once
 
+#include <compare>
 #ifndef __MY_DSA_VECTOR_HPP
 #define __MY_DSA_VECTOR_HPP
 
 #include <QDebug>
 #include <concepts>
+#include <functional>
 #include <initializer_list>
 #include <new>
 
@@ -33,6 +35,8 @@ template <typename T> class vararray {
   using size_type = int;
   /// \brief size type. type for index and rank
   using rank_type = int;
+
+  using sort_functor = std::function<bool(const_reference, const_reference)>;
 
 public:
   /// \brief constructor with size and
@@ -111,6 +115,11 @@ public:
   /// \brief clear the vararray
   void clear();
 
+  void sort(sort_functor comp);
+
+  void sort()
+    requires Comparable<T>;
+
   /// \brief insert to the vararray at pos with data
   /// \param pos the index to insert
   /// \param data the data to insert
@@ -151,6 +160,10 @@ private:
   /// \brief realloc the data with new_capacity
   /// \param new_capacity the new capacity to allocate
   void realloc(size_type const new_capacity = DEFAULT_CAPACITY);
+
+  void sort_part(rank_type const l, rank_type const r, sort_functor comp);
+
+  rank_type partition(rank_type const l, rank_type const r, sort_functor comp);
 
   /// \brief get the max size of the vararray with the current capacity
   /// that is we only use part of the capacity to hold elements
@@ -351,6 +364,65 @@ vararray<T>::rank_type vararray<T>::binary_search(const_reference target) const
   }
 
   return -1;
+}
+
+template <typename T>
+vararray<T>::rank_type vararray<T>::partition(rank_type const l,
+                                              rank_type const r,
+                                              sort_functor comp) {
+  Q_ASSERT(l >= 0 && l < size());
+  Q_ASSERT(r >= 0 && r <= size());
+
+  // auto lte = [comp](T const &a, T const &b) {
+  //   return std::equal_to()(a, b) || comp(a, b);
+  // };
+
+  std::swap(_data[l], _data[l + rand() % (r - l)]);
+
+  T const flag = _data[l];
+
+  rank_type low = l, high = r;
+
+  while (low < high) {
+    do
+      high--;
+    while (low < high && comp(flag, _data[high]));
+
+    if (low < high)
+      _data[low] = _data[high];
+
+    do
+      low++;
+    while (low < high && comp(_data[low], flag));
+
+    if (low < high)
+      _data[high] = _data[low];
+  }
+
+  _data[high] = flag;
+
+  return high;
+}
+
+template <typename T>
+void vararray<T>::sort_part(rank_type const l, rank_type const r,
+                            sort_functor comp) {
+  if (r - l < 2)
+    return;
+  rank_type const mid = partition(l, r, comp);
+  sort_part(l, mid, comp);
+  sort_part(mid + 1, r, comp);
+}
+
+template <typename T> void vararray<T>::sort(sort_functor comp) {
+  sort_part(0, _size, comp);
+}
+
+template <typename T>
+void vararray<T>::sort()
+  requires Comparable<T>
+{
+  sort_part(0, _size, std::less<T>());
 }
 
 }; // namespace dsa

@@ -101,13 +101,23 @@ private:
     SORT_BY_COUNTRY_INDEX,
   };
 
-  void sortCountry(dsa::vararray<dsa::Country> &countries,
+  // ==============================================================
+  // the rank page
+  //
+  void initRankPage();
+
+  struct country_table_item{
+    QString country_name;
+    int women_points;
+    int men_points;
+    int id;
+  };
+
+  void sortCountry(dsa::vararray<country_table_item> &countries,
                    sort_type const type);
 
   void updateRankTable();
 
-  // ==============================================================
-  // the rank page
 
   // ==============================================================
 private:

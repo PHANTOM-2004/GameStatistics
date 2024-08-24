@@ -446,7 +446,7 @@
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="sortComboBox">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -462,7 +462,7 @@
        </font>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="sortLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -481,7 +481,7 @@
        <string>Sort By</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="sortButton">
       <property name="geometry">
        <rect>
         <x>260</x>
@@ -500,7 +500,7 @@
        <string>submit</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="rankTable">
       <property name="geometry">
        <rect>
         <x>20</x>

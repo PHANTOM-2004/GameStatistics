@@ -5,7 +5,7 @@ void VararrayTest::insert_test() {
   dut.clear();
   ref.clear();
 
-  for (int i = 0; i < N; i++) {
+  for (int i = 0; i < N - 1; i++) {
     int pos = (unsigned)rand() % (i + 1);
     auto const data = std::to_string(rand());
 
@@ -87,6 +87,9 @@ void VararrayTest::search_test() {
 
 bool VararrayTest::compare() const {
   for (int i = 0; i < ref.size(); i++) {
+    if (dut[i] != ref[i]) {
+      qDebug() << i << "[dut]" << dut[i] << "[ref]" << ref[i];
+    }
     Q_ASSERT(dut[i] == ref[i]);
   }
   Q_ASSERT(dut.size() == ref.size());
@@ -96,11 +99,33 @@ bool VararrayTest::compare() const {
   return true;
 }
 
+void VararrayTest::sort_test() {
+  insert_test();
+
+  auto cmp = [](std::string const &a, std::string const &b) {
+    if (a.size() != b.size())
+      return a.size() < b.size();
+    return a < b;
+  };
+
+  std::sort(ref.begin(), ref.end(), cmp);
+  dut.sort(cmp);
+
+  qDebug() << "sort with functor";
+  compare();
+
+  std::sort(ref.begin(), ref.end());
+  dut.sort();
+  qDebug() << "sort with default";
+  compare();
+}
+
 int main() {
   srand((unsigned)time(nullptr));
-  VararrayTest T1(2000);
+  VararrayTest T1(20000);
   T1.erase_test();
   T1.search_test();
+  T1.sort_test();
   dsa::vararray<QString> v = {"199",    "299",  "190",      " 2981",
                               "nimabi", "cnm,", "yuanshen", "Genshin"};
   for (int i = 0; i < v.size(); i++) {
