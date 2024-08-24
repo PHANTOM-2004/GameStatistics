@@ -34,6 +34,7 @@ Sport::Sport(QString const &sport_name, SPORT_TYPE const type,
              SPORT_GENDER const gender)
     : sport_name(sport_name), type(type), gender(gender) {}
 
+#ifdef _DSA_DEBUG
 void Sport::show_info(Country const *const CountryList) const {
   qDebug() << "[SPORT DEBUG INFO]";
   qDebug() << "sport:" << sport_name;
@@ -51,4 +52,6 @@ void Sport::show_info(Country const *const CountryList) const {
              << "rank: " << i + 1;
   }
 }
+#endif
+
 } // namespace dsa

@@ -1,4 +1,4 @@
-/// \file 
+/// \file
 /// \brief vararray template
 #pragma once
 
@@ -45,6 +45,9 @@ public:
   /// \brief copy constructor
   /// \param other the object to copy
   vararray(vararray<T> const &other);
+
+  vararray(const_pointer_type begin_pointer, size_type const length);
+
   /// \brief destructor
   ~vararray() { delete[] _data; }
 
@@ -209,6 +212,15 @@ template <typename T> vararray<T>::vararray(vararray<T> const &other) {
 
   for (rank_type i = 0; i < _size; i++) {
     _data[i] = other[i];
+  }
+}
+
+template <typename T>
+vararray<T>::vararray(const_pointer_type begin_pointer, size_type const length)
+    : vararray(length) {
+  for (size_type i = 0; i < size(); i++) {
+    _data[i] = begin_pointer[i];
+    Q_ASSERT(i < length);
   }
 }
 

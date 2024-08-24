@@ -34,6 +34,7 @@ bool Country::insert_sport(Sport *const SportList, int const sport_index,
   return true;
 }
 
+#ifdef _DSA_DEBUG
 void Country::show_info(Sport const *const SportList) const {
   qDebug() << "[COUNTRY DEBUG INFO]";
   qDebug() << "country: " << name();
@@ -51,5 +52,6 @@ void Country::show_info(Sport const *const SportList) const {
   }
   qDebug() << "}";
 }
+#endif
 
 } // namespace dsa

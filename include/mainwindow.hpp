@@ -27,6 +27,7 @@ public:
   ~MainWindow();
 
 private:
+  // ==============================================================
   /// \brief initialize the memu bar, call once in constructor
   void initMenuBar();
   /// \brief initialize the build information in menu
@@ -38,12 +39,17 @@ private:
   /// \brief show the build information when clicked
   void showBuildInfo();
 
+
+
+
   // ==============================================================
   /// \brief init the sport display page
   void initSportsPage();
 
   /// \brief init the sport table in the sport display page
   void initSportTable();
+
+
 
   // ==============================================================
   /// \brief init the score add page
@@ -91,8 +97,15 @@ private:
 
   /// \brief slots when submit button is pressed
   void onSubmitButtonClicked();
-  // ==============================================================
 
+
+
+
+  // ==============================================================
+  // the rank page
+  
+
+  // ==============================================================
 private:
   /// \brief auto generated ui
   Ui::MainWindow *ui;

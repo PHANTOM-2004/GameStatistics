@@ -7,6 +7,8 @@ dsa::Statistic MainWindow::statistic = dsa::Statistic{};
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  this->setFixedSize(this->size());
+  // this->setWindowFlag(this->flags);
 
   /*---------------------------------------------------------------------------*/
   initSportsPage();
