@@ -63,8 +63,14 @@ public:
   bool insert_scores(int const sport_index, vararray<country_score> &input);
 
 private:
+  /// \brief getter for the reference of country at index
+  /// \param index the index of the country in the country list
+  /// \return the reference of the country at index
   Country &country(int const index);
  
+  /// \brief getter for the reference of sport at index
+  /// \param index the index of the sport in the sport list
+  /// \return the reference of the sport at index
   Sport &sport(int const index);
 
   /// \brief const pointer to the country list

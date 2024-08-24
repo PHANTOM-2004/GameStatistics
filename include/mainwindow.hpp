@@ -94,6 +94,7 @@ private:
   /// \brief slots when submit button is pressed
   void onSubmitButtonClicked();
 
+  /// \brief the sort type, decides how we rank the different countries
   enum sort_type {
     SORT_BY_MEN_POINTS = 0,
     SORT_BY_WOMEN_POINTS,
@@ -104,18 +105,29 @@ private:
   // ==============================================================
   // the rank page
   //
+  /// \brief init the rank page
   void initRankPage();
 
+  /// \brief struct for updating the rank table in rank page
   struct country_table_item {
+    /// \brief name of the country
     QString country_name;
+    /// \brief women points of the country
     int women_points;
+    /// \brief men points of the country
     int men_points;
+    /// \brief index of the country
     int id;
   };
 
+  /// \brief sort the countries according to the given sort type
+  /// \param countries the vararray of the country list to be sorted
+  /// \param type the type of the sort
   void sortCountry(dsa::vararray<country_table_item> &countries,
                    sort_type const type);
 
+  /// \brief update the rank table;called when the submit button
+  /// is pressed
   void updateRankTable();
 
   // ==============================================================
@@ -123,6 +135,8 @@ private:
   /// \brief auto generated ui
   Ui::MainWindow *ui;
 
+  /// \brief record whether the rank has been updated, used as signal
+  /// for rank page, if it is true. the rank table will surely be updated
   bool rank_updated = false;
 
   /// \brief singleton for dsa::Statistic class

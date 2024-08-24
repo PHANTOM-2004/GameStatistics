@@ -39,10 +39,16 @@ struct country_score {
       return std::strong_ordering::equal;
   }
 
+  /// \brief operator<, used for descending order in sort
+  /// \param other trivial
+  /// \return return true when score > other.score
   bool operator<(country_score const &other) const {
     return score > other.score;
   }
 
+  /// \brief operator==, equal in score field
+  /// \param other trivial
+  /// \return return true when score == other.score
   bool operator==(country_score const &other) const {
     return score == other.score;
   }
@@ -100,6 +106,8 @@ public:
   /// \return the points according to the rank of the sport
   int get_points(int const rank) const;
 
+  /// \brief check if the score of this sport has already been input
+  /// \return return true when the score has already been input
   bool inserted() const {
     Q_ASSERT((_inserted && countries.size()) ||
              (!_inserted && countries.empty()));
@@ -107,6 +115,9 @@ public:
   };
 
 #ifdef _DSA_DEBUG
+  /// \brief function for debug , display the information(including all fields)
+  /// of this class , readonly
+  /// \param CountryList pointer to the country array
   void show_info(Country const *const CountryList) const; // for debug
 #endif
 
@@ -123,6 +134,7 @@ private:
   /// \brief the countries that win points in the sport
   dsa::vararray<country_score> countries;
 
+  /// \brief record if the score of this sport has already been input
   bool _inserted = false;
 
   /// \brief the score rules for top 5 score type

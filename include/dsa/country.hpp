@@ -27,11 +27,16 @@ public:
     return women_points_count + men_points_count;
   };
 
+  /// \brief getter of the total points, readonly
+  /// \return the men sport points the country gets
   int get_men_points() const { return men_points_count; }
 
+  /// \brief getter of the total points, readonly
+  /// \return the women sport points the country gets
   int get_women_points() const { return women_points_count; }
 
   /// \brief insert a kind of sport to the country
+  /// \param SportList the list of all the sports
   /// \param sport_index the sport id in the sport array
   /// \param rank the rank the country got
   /// \param score the score the country got

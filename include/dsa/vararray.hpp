@@ -34,7 +34,7 @@ template <typename T> class vararray {
   using size_type = int;
   /// \brief size type. type for index and rank
   using rank_type = int;
-
+  /// \brief type of the sort comparator for comparing two elements
   using sort_functor = std::function<bool(const_reference, const_reference)>;
 
 public:
@@ -49,6 +49,9 @@ public:
   /// \param other the object to copy
   vararray(vararray<T> const &other);
 
+  /// \brief construct with an array with given length
+  /// \param begin_pointer pointer to the array to copy
+  /// \param length the length of the array to copy
   vararray(const_pointer_type begin_pointer, size_type const length);
 
   /// \brief destructor
@@ -60,6 +63,9 @@ public:
   /// \brief pop an element from the end
   void pop_back();
 
+  /// \brief reserve capacity for later insertion
+  /// do nothing when the capacity given < actual capacity
+  /// \param reserve_capacity the capacity to reserve
   void reserve(size_type const reserve_capacity);
 
   /// \brief get the size, readonly and noexcept
@@ -116,8 +122,11 @@ public:
   /// \brief clear the vararray
   void clear();
 
+  /// \brief sort the vararray according to the comparator 
+  /// \param comp the comparator to compare elements
   void sort(sort_functor comp);
 
+  /// \brief sort the vararray with default '<'(std::less)
   void sort()
     requires Comparable<T>;
 
@@ -162,8 +171,17 @@ private:
   /// \param new_capacity the new capacity to allocate
   void realloc(size_type const new_capacity = DEFAULT_CAPACITY);
 
+  /// \brief sort the vararray in range \[l, r) according to the comparator 
+  /// \param l left side of the interval, included
+  /// \param r right side of the interval, not included
+  /// \param comp the comparator to compare elements
   void sort_part(rank_type const l, rank_type const r, sort_functor comp);
 
+  /// \brief partition for quick sort
+  /// \param l left side of the interval, included
+  /// \param r right side of the interval, not included
+  /// \param comp the comparator to compare elements
+  /// \return return the index of pivot point 
   rank_type partition(rank_type const l, rank_type const r, sort_functor comp);
 
   /// \brief get the max size of the vararray with the current capacity
