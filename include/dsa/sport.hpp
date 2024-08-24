@@ -2,7 +2,6 @@
 /// \brief the definition of the sport class
 #pragma once
 
-#include <qstringliteral.h>
 #ifndef __SPORT_CLASS_HPP__
 #define __SPORT_CLASS_HPP__
 #include "dsa/vararray.hpp"
@@ -39,6 +38,8 @@ struct country_score {
       return std::strong_ordering::equal;
   }
 };
+
+class Country;
 
 /// \brief the class to store the sport information
 class Sport {
@@ -89,6 +90,8 @@ public:
   /// \brief get the points of the rank
   /// \return the points according to the rank of the sport
   int get_points(int const rank) const;
+
+  void show_info(Country const* const CountryList) const;//for debug
 
 private:
   /// \brief the name of the sport

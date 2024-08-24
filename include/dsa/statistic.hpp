@@ -1,4 +1,4 @@
-/// \file 
+/// \file
 /// \brief the definition of the Statistic class
 #pragma once
 
@@ -6,18 +6,18 @@
 #ifndef __STATISTIC_CLASS_HPP__
 #define __STATISTIC_CLASS_HPP__
 
-#include "dsa/countryscore.hpp"
+#include "dsa/country.hpp"
 #include "dsa/sport.hpp"
 
 namespace dsa {
-/// \brief the class to process the data 
+/// \brief the class to process the data
 /// insert/search/sort
 /// note: it is a singleton, only exist one copy
 ///
 class Statistic {
 public:
   /// \brief constructor
-  Statistic();
+  Statistic() = default;
 
   /// \brief getter for the count of countries
   /// \return the count of countries
@@ -29,11 +29,11 @@ public:
 
   /// \brief getter for the const pointer of sport array
   /// \return the count of sport array
-  Sport const *sport_data() const { return _SportsList; }
+  Sport const *sport_data() const { return SportList; }
 
   /// \brief getter for the const pointer of country array
   /// \return the count of country array
-  CountryScore const *country_data() const { return _CountriesList; }
+  Country const *country_data() const { return CountryList; }
 
   /// \brief getter for the index of the name
   /// \param name the name of the sport to get
@@ -45,12 +45,12 @@ public:
   /// \return the index of the country name
   int get_country_index(QString const &name) const;
 
-  /// \brief getter for the name of country array at index 
+  /// \brief getter for the name of country array at index
   /// \brief the index of the country
   /// \return the name of the sport
   QString const &get_country_name(int const index) const;
 
-  /// \brief getter for the name of sport array at index 
+  /// \brief getter for the name of sport array at index
   /// \brief the index of the sport
   /// \return the name of the sport
   QString const &get_sport_name(int const index) const;
@@ -63,14 +63,20 @@ public:
   bool insert_scores(int const sport_index, vararray<country_score> &input);
 
 private:
+  Country &country(int const index);
+ 
+  Sport &sport(int const index);
+
   /// \brief const pointer to the country list
-  CountryScore *const _CountriesList;
+  static Country *const CountryList;
   /// \brief const pointer to the sport list
-  Sport *const _SportsList;
+  static Sport *const SportList;
   /// \brief count of the countries;
-  int const _countries_count;
+  static int const _countries_count;
   /// \brief count of the sports;
-  int const _sports_count;
+  static int const _sports_count;
+
+
 };
 
 }; // namespace dsa

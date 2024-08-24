@@ -1,4 +1,4 @@
-/// \file 
+/// \file
 /// \brief definition of countryscore type
 #pragma once
 
@@ -8,16 +8,17 @@
 #include <QString>
 namespace dsa {
 
+class Sport;
 /// \brief this class store the country information
 /// along with the sports in which the country win scores
 /// also, it records the total points of both men sports and women sports
 /// and trivial the total points
-class CountryScore {
+class Country {
 
 public:
   /// \brief constructor
   /// \param country_name the name of the country
-  CountryScore(QString const &country_name);
+  Country(QString const &country_name);
 
   /// \brief getter of the total points, readonly
   /// \return the total points the country gets
@@ -29,14 +30,17 @@ public:
   /// \param sport_index the sport id in the sport array
   /// \param rank the rank the country got
   /// \param score the score the country got
-  bool insert_sport(int const sport_index, int const rank, int const score);
+  bool insert_sport(Sport *const SportList, int const sport_index,
+                    int const rank, int const score);
 
   /// \brief getter of the country name, readonly
   /// \return  the name of the country
   QString const &name() const { return country_name; }
 
+  void show_info(Sport const* const SportList) const; // for debug
+
 private:
-  /// \brief the struct records the sports in 
+  /// \brief the struct records the sports in
   /// which the country wins points
   struct sport_score {
     /// \brief the index of the sport array
@@ -47,7 +51,7 @@ private:
     int rank;
 
     /// \brief operator< for comparison
-    /// the one withe higher score will be stored at 
+    /// the one withe higher score will be stored at
     /// smaller index
     /// \param other the one to compare with
     /// \return trivial
@@ -65,7 +69,7 @@ private:
   int women_points_count = 0;
   /// \brief the total points of the men sports
   int men_points_count = 0;
-  /// \brief the sports the country win points in 
+  /// \brief the sports the country win points in
   vararray<sport_score> sports;
 };
 
