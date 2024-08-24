@@ -27,6 +27,10 @@ public:
     return women_points_count + men_points_count;
   };
 
+  int get_men_points() const { return men_points_count; }
+
+  int get_women_points() const { return women_points_count; }
+
   /// \brief insert a kind of sport to the country
   /// \param sport_index the sport id in the sport array
   /// \param rank the rank the country got

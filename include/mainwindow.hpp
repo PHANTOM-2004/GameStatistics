@@ -1,6 +1,7 @@
 /// \file
 #pragma once
 
+#include "dsa/vararray.hpp"
 #include <qlineedit.h>
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
@@ -39,17 +40,12 @@ private:
   /// \brief show the build information when clicked
   void showBuildInfo();
 
-
-
-
   // ==============================================================
   /// \brief init the sport display page
   void initSportsPage();
 
   /// \brief init the sport table in the sport display page
   void initSportTable();
-
-
 
   // ==============================================================
   /// \brief init the score add page
@@ -90,7 +86,7 @@ private:
   /// \brief check the score and country the user input
   /// \param combo one of the QComboBox of the input group box
   /// \param line one of the QLineEdit of the input group box
-  /// \param id the QComboBox/QLineEdit number 
+  /// \param id the QComboBox/QLineEdit number
   /// \return return true when the checking is passed
   bool scoreInputCheck(QComboBox const *combo, QLineEdit const *line,
                        int const id) const;
@@ -98,12 +94,20 @@ private:
   /// \brief slots when submit button is pressed
   void onSubmitButtonClicked();
 
+  enum sort_type {
+    SORT_BY_MEN_POINTS = 0,
+    SORT_BY_WOMEN_POINTS,
+    SORT_BY_TOTAL_POINTS,
+    SORT_BY_COUNTRY_INDEX,
+  };
 
+  void sortCountry(dsa::vararray<dsa::Country> &countries,
+                   sort_type const type);
 
+  void updateRankTable();
 
   // ==============================================================
   // the rank page
-  
 
   // ==============================================================
 private:
