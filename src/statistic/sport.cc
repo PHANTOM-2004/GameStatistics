@@ -21,9 +21,9 @@ int Sport::get_points(int const rank) const {
   Q_ASSERT(rank >= 1 && rank <= sport_type());
 
   if (sport_type() == SCORE_TOP3) {
-    return top3_points[rank];
+    return top3_points[rank - 1];
   } else if (sport_type() == SCORE_TOP5) {
-    return top5_points[rank];
+    return top5_points[rank - 1];
   } else {
     Q_ASSERT(0);
   }

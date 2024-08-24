@@ -451,7 +451,7 @@
        <rect>
         <x>100</x>
         <y>430</y>
-        <width>121</width>
+        <width>191</width>
         <height>51</height>
        </rect>
       </property>
@@ -484,7 +484,7 @@
      <widget class="QPushButton" name="sortButton">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>330</x>
         <y>430</y>
         <width>111</width>
         <height>51</height>
@@ -497,7 +497,7 @@
        </font>
       </property>
       <property name="text">
-       <string>submit</string>
+       <string>Update</string>
       </property>
      </widget>
      <widget class="QTableWidget" name="rankTable">
@@ -521,6 +521,9 @@
       <property name="columnCount">
        <number>4</number>
       </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
       <row/>
       <row/>
       <row/>

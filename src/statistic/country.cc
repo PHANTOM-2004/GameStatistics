@@ -13,18 +13,20 @@ bool Country::insert_sport(Sport *const SportList, int const sport_index,
 
   if (sports.empty()) {
     sports.push_back(target);
-    return true;
+  } else {
+    auto const pos =
+        std::lower_bound(sports.begin_pointer(), sports.end_pointer(), target);
+    int const i = pos - sports.begin_pointer();
+    sports.insert(i, target);
   }
-
-  auto const pos =
-      std::lower_bound(sports.begin_pointer(), sports.end_pointer(), target);
-  int const i = pos - sports.begin_pointer();
-
-  sports.insert(i, target);
 
   // now we count the points
   auto const gender = SportList[sport_index].sport_gender();
   int const points = SportList[sport_index].get_points(rank);
+
+  qDebug() << "insert" << sport_index
+           << SportList[sport_index].sport_gender_str() << "with rank:" << rank
+           << "with points:" << points;
 
   if (gender == WOMEN)
     this->women_points_count += points;

@@ -2,7 +2,6 @@
 /// \brief vararray template
 #pragma once
 
-#include <compare>
 #ifndef __MY_DSA_VECTOR_HPP
 #define __MY_DSA_VECTOR_HPP
 
@@ -60,6 +59,8 @@ public:
   void push_back(const_reference data);
   /// \brief pop an element from the end
   void pop_back();
+
+  void reserve(size_type const reserve_capacity);
 
   /// \brief get the size, readonly and noexcept
   /// \return the size of the vararray
@@ -299,6 +300,12 @@ template <typename T> void vararray<T>::push_back(const_reference data) {
 template <typename T> void vararray<T>::pop_back() {
   _size -= 1;
   shrink();
+}
+
+template <typename T> void vararray<T>::reserve(size_type reserve_capacity) {
+  if (reserve_capacity <= _capacity)
+    return;
+  realloc(reserve_capacity);
 }
 
 template <typename T>

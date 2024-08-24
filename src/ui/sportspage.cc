@@ -1,7 +1,6 @@
 #include "dsa/sport.hpp"
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
-#include <qnamespace.h>
 
 void MainWindow::initSportsPage() { initSportTable(); }
 

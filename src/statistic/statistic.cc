@@ -77,6 +77,10 @@ bool Statistic::insert_scores(int const sport_index,
     Q_ASSERT(cur.country_index >= 0 && cur.country_index < country_count());
     Q_ASSERT(rank <= sport(sport_index).sport_type() && rank >= 1);
 
+    qDebug() << "insert to country:" << cur.country_index
+             << "sport:" << sport_index << "with rank" << rank << "score"
+             << cur.score;
+
     country(cur.country_index)
         .insert_sport(SportList, sport_index, rank, cur.score);
   }

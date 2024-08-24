@@ -106,7 +106,7 @@ private:
   //
   void initRankPage();
 
-  struct country_table_item{
+  struct country_table_item {
     QString country_name;
     int women_points;
     int men_points;
@@ -118,11 +118,12 @@ private:
 
   void updateRankTable();
 
-
   // ==============================================================
 private:
   /// \brief auto generated ui
   Ui::MainWindow *ui;
+
+  bool rank_updated = false;
 
   /// \brief singleton for dsa::Statistic class
   static dsa::Statistic statistic;

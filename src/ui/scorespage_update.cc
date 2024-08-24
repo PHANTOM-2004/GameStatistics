@@ -14,6 +14,8 @@ void MainWindow::updateSportsInfo(int const index) {
 
   qDebug() << "sports selected changed" << index;
   updateSportsInfoLabel(index);
+  clearScoreInput();
+  resetCountryComboBox();
 
   // set index to -1
   // resetCountryCombo();
@@ -171,5 +173,8 @@ void MainWindow::onSubmitButtonClicked() {
     QMessageBox::warning(ui->sportsSelectBox, tr("Duplicate Scores"),
                          tr("You have already input scores of the sport:\n %1.")
                              .arg(ui->sportsCombo->currentText()));
+    return;
   }
+
+  rank_updated = true;
 }

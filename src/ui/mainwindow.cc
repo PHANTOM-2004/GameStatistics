@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
   initSportsPage();
 
   initScoresPage();
+
+  initRankPage();
+
   // menuBar
   initMenuBar();
   /*---------------------------------------------------------------------------*/
