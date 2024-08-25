@@ -4,7 +4,7 @@
 
 void MainWindow::updateSportsInfoLabel(int const index) {
   Q_ASSERT(index >= 0 && index < statistic.sport_count());
-  auto const &target = statistic.sport_data()[index];
+  auto const &target = get_statistic().sport(index);
   ui->sportsGenderLabel->setText(tr("Gender: ") + target.sport_gender_str());
   ui->sportsTypeLabel->setText(tr("Score Type: ") + target.sport_type_str());
 }
@@ -22,7 +22,7 @@ void MainWindow::updateSportsInfo(int const index) {
   // clearScoreInput();
 
   // hide the extra two input widget
-  if (statistic.sport_data()[index].sport_type() == dsa::SCORE_TOP3) {
+  if (get_statistic().sport(index).sport_type() == dsa::SCORE_TOP3) {
     ui->scoreLabel4->hide();
     ui->scoreLabel5->hide();
 
@@ -128,7 +128,7 @@ void MainWindow::onSubmitButtonClicked() {
     return;
 
   bool const top5_type =
-      statistic.sport_data()[ui->sportsCombo->currentIndex()].sport_type() ==
+      get_statistic().sport(ui->sportsCombo->currentIndex()).sport_type() ==
       dsa::SCORE_TOP5;
 
   if (top5_type &&

@@ -3,16 +3,22 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include <qtablewidget.h>
-
-static QStringList const rankTableHeaders = {
-    "Rank", "Country", "Index", "TotalPoints", "MenPoints", "WomenPoints"};
+enum {
+  COL_RANK = 0,
+  COL_NAME,
+  COL_INDEX,
+  COL_TOTAL,
+  COL_MEN,
+  COL_WOMEN,
+  SIZE_OF_COL,
+};
 
 void MainWindow::initRankPage() {
-  static QString sortComboBoxItem[] = {
-      "men sports points",
-      "women sports points",
-      "total points",
-      "country index",
+  static QString const sortComboBoxItem[] = {
+      tr("men sports points"),
+      tr("women sports points"),
+      tr("total points"),
+      tr("country index"),
   };
 
   ui->sortComboBox->addItem(sortComboBoxItem[SORT_BY_MEN_POINTS]);
@@ -24,6 +30,14 @@ void MainWindow::initRankPage() {
 
   connect(ui->sortButton, &QPushButton::clicked, this,
           &MainWindow::updateRankTable);
+
+  rankTableHeaders.resize(SIZE_OF_COL);
+  rankTableHeaders[COL_RANK] = tr("Rank");
+  rankTableHeaders[COL_NAME] = tr("Country");
+  rankTableHeaders[COL_INDEX] = tr("Index");
+  rankTableHeaders[COL_TOTAL] = tr("TotalPoints");
+  rankTableHeaders[COL_MEN] = tr("MenPoints");
+  rankTableHeaders[COL_WOMEN] = tr("WomenPoints");
 
   ui->rankTable->setColumnCount(rankTableHeaders.size());
   ui->rankTable->setHorizontalHeaderLabels(rankTableHeaders);
@@ -68,27 +82,25 @@ void MainWindow::updateRankTable() {
 
   for (int i = 0; i < countries.size(); i++) {
     auto item_rank = new QTableWidgetItem(QString::number(i + 1));
-    ui->rankTable->setItem(i, 0, item_rank);
+    ui->rankTable->setItem(i, COL_RANK, item_rank);
 
     auto item_name = new QTableWidgetItem(countries[i].country_name);
-    ui->rankTable->setItem(i, 1, item_name);
+    ui->rankTable->setItem(i, COL_NAME, item_name);
 
     auto item_index = new QTableWidgetItem(QString::number(countries[i].id));
-    ui->rankTable->setItem(i, 2, item_index);
+    ui->rankTable->setItem(i, COL_INDEX, item_index);
 
     auto item_total = new QTableWidgetItem(
         QString::number(countries[i].men_points + countries[i].women_points));
-    ui->rankTable->setItem(i, 3, item_total);
+    ui->rankTable->setItem(i, COL_TOTAL, item_total);
 
     auto item_men =
         new QTableWidgetItem(QString::number(countries[i].men_points));
-    ui->rankTable->setItem(i, 4, item_men);
+    ui->rankTable->setItem(i, COL_MEN, item_men);
 
     auto item_women =
         new QTableWidgetItem(QString::number(countries[i].women_points));
-    ui->rankTable->setItem(i, 5, item_women);
-
-
+    ui->rankTable->setItem(i, COL_WOMEN, item_women);
   }
 
   // set uneditable and center

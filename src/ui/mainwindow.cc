@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   initRankPage();
 
+  initQueryPage();
+
   // menuBar
   initMenuBar();
   /*---------------------------------------------------------------------------*/

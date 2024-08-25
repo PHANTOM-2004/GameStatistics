@@ -5,7 +5,7 @@
 void MainWindow::initCountryComboBox(QComboBox *combo) {
   Q_ASSERT(combo == ui->countryComboBox1 || combo == ui->countryComboBox2 ||
            combo == ui->countryComboBox3 || combo == ui->countryComboBox4 ||
-           combo == ui->countryComboBox5);
+           combo == ui->countryComboBox5 || combo == ui->searchCountryComboBox);
 
   auto countries = statistic.country_data();
   int const cnt = statistic.country_count();
@@ -59,7 +59,8 @@ void MainWindow::initScoreInputBox() {
           &MainWindow::onClearButtonClicked);
   connect(ui->submitButton, &QPushButton::clicked, this,
           &MainWindow::onSubmitButtonClicked);
-  ui->clearButton->setStatusTip(tr("clear all the scores and countries selected"));
+  ui->clearButton->setStatusTip(
+      tr("clear all the scores and countries selected"));
   ui->submitButton->setStatusTip(tr("submit the scores"));
 
   // init country box
@@ -75,4 +76,3 @@ void MainWindow::initScoreInputBox() {
   initScoreLineEdit(ui->countryScoreLineEdit4);
   initScoreLineEdit(ui->countryScoreLineEdit5);
 }
-

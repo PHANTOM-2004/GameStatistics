@@ -54,7 +54,6 @@ struct country_score {
   }
 };
 
-
 class Country;
 
 /// \brief the class to store the sport information
@@ -105,6 +104,10 @@ public:
   /// \brief get the points of the rank
   /// \return the points according to the rank of the sport
   int get_points(int const rank) const;
+
+  vararray<country_score> const &get_scored_countries() const {
+    return countries;
+  }
 
   /// \brief check if the score of this sport has already been input
   /// \return return true when the score has already been input

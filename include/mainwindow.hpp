@@ -2,6 +2,7 @@
 #pragma once
 
 #include "dsa/vararray.hpp"
+#include <qcontainerfwd.h>
 #include <qlineedit.h>
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
@@ -131,6 +132,17 @@ private:
   void updateRankTable();
 
   // ==============================================================
+  void initQueryPage();
+
+  void initQueryTable();
+
+  void updateQueryTable();
+
+  void updateQueryInfo();
+
+  // ==============================================================
+  dsa::Statistic const &get_statistic() const { return statistic; }
+
 private:
   /// \brief auto generated ui
   Ui::MainWindow *ui;
@@ -138,6 +150,10 @@ private:
   /// \brief record whether the rank has been updated, used as signal
   /// for rank page, if it is true. the rank table will surely be updated
   bool rank_updated = false;
+
+  QStringList rankTableHeaders;
+
+  QStringList queryTableHeaders;
 
   /// \brief singleton for dsa::Statistic class
   static dsa::Statistic statistic;

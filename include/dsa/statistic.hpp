@@ -31,9 +31,19 @@ public:
   /// \return the count of sport array
   Sport const *sport_data() const { return SportList; }
 
+  Sport const &sport(int const index) const {
+    Q_ASSERT(index >= 0 && index < sport_count());
+    return SportList[index];
+  }
+
   /// \brief getter for the const pointer of country array
   /// \return the count of country array
   Country const *country_data() const { return CountryList; }
+
+  Country const &country(int const index) const {
+    Q_ASSERT(index >= 0 && index < country_count());
+    return CountryList[index];
+  }
 
   /// \brief getter for the index of the name
   /// \param name the name of the sport to get
@@ -67,7 +77,7 @@ private:
   /// \param index the index of the country in the country list
   /// \return the reference of the country at index
   Country &country(int const index);
- 
+
   /// \brief getter for the reference of sport at index
   /// \param index the index of the sport in the sport list
   /// \return the reference of the sport at index
@@ -81,8 +91,6 @@ private:
   static int const _countries_count;
   /// \brief count of the sports;
   static int const _sports_count;
-
-
 };
 
 }; // namespace dsa
