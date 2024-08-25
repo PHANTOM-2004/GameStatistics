@@ -105,13 +105,8 @@ void MainWindow::updateRankTable() {
 
   // set uneditable and center
 
-  for (int i = 0; i < statistic.country_count(); i++) {
-    for (int j = 0; j < rankTableHeaders.size(); j++) {
-      auto item = ui->rankTable->item(i, j);
-      item->setTextAlignment(Qt::AlignCenter);
-      item->setFlags(item->flags() & ~Qt::ItemIsEditable); // type
-    }
-  }
+  setTableFormat(ui->rankTable, statistic.country_count(),
+                 rankTableHeaders.size());
 
   ui->rankTable->resizeColumnsToContents();
 }

@@ -1,6 +1,7 @@
 #include "mainwindow.hpp"
-#include "ui_mainwindow.h"
 #include "QStringLiteral"
+#include "ui_mainwindow.h"
+#include <qtablewidget.h>
 
 dsa::Statistic MainWindow::statistic = dsa::Statistic{};
 
@@ -96,4 +97,18 @@ void MainWindow::initBuildInfo() {
   buildInfoAction->setStatusTip("Building environment");
   connect(buildInfoAction, &QAction::triggered, this,
           &MainWindow::showBuildInfo);
+}
+
+void MainWindow::setTableFormat(QTableWidget *table, int const row,
+                                int const col) {
+  Q_ASSERT(row > 0 && row <= table->rowCount());
+  Q_ASSERT(col > 0 && col <= table->columnCount());
+
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      auto item = table->item(i, j);
+      item->setTextAlignment(Qt::AlignCenter);
+      item->setFlags(item->flags() & ~Qt::ItemIsEditable); // type
+    }
+  }
 }

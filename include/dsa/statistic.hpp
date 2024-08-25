@@ -1,8 +1,6 @@
-/// \file
-/// \brief the definition of the Statistic class
+/// \file \brief the definition of the Statistic class
 #pragma once
 
-#include "dsa/vararray.hpp"
 #ifndef __STATISTIC_CLASS_HPP__
 #define __STATISTIC_CLASS_HPP__
 

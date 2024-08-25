@@ -109,7 +109,7 @@ bool MainWindow::scoreInputCheck(QComboBox const *combo, QLineEdit const *line,
   return true;
 }
 
-void MainWindow::onSubmitButtonClicked() {
+void MainWindow::updateScore() {
   qDebug() << "submit the input";
 
   if (ui->sportsCombo->currentIndex() < 0) {
@@ -176,5 +176,16 @@ void MainWindow::onSubmitButtonClicked() {
     return;
   }
 
+  // successfully insert
+  else {
+    QMessageBox::information(ui->scoreInputBox, tr("Score Input"),
+                             tr("You have successfully input the scores"));
+  }
+
+  updateSignals();
+}
+
+void MainWindow::updateSignals() {
   rank_updated = true;
+  query_updated = true;
 }

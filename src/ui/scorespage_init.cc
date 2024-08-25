@@ -58,7 +58,7 @@ void MainWindow::initScoreInputBox() {
   connect(ui->clearButton, &QPushButton::clicked, this,
           &MainWindow::onClearButtonClicked);
   connect(ui->submitButton, &QPushButton::clicked, this,
-          &MainWindow::onSubmitButtonClicked);
+          &MainWindow::updateScore);
   ui->clearButton->setStatusTip(
       tr("clear all the scores and countries selected"));
   ui->submitButton->setStatusTip(tr("submit the scores"));

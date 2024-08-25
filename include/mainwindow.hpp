@@ -1,9 +1,6 @@
 /// \file
 #pragma once
 
-#include "dsa/vararray.hpp"
-#include <qcontainerfwd.h>
-#include <qlineedit.h>
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
@@ -11,6 +8,7 @@
 #include <QComboBox>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -93,7 +91,7 @@ private:
                        int const id) const;
 
   /// \brief slots when submit button is pressed
-  void onSubmitButtonClicked();
+  void updateScore();
 
   /// \brief the sort type, decides how we rank the different countries
   enum sort_type {
@@ -143,6 +141,10 @@ private:
   // ==============================================================
   dsa::Statistic const &get_statistic() const { return statistic; }
 
+  void setTableFormat(QTableWidget *table, int const row, int const col);
+
+  void updateSignals();
+
 private:
   /// \brief auto generated ui
   Ui::MainWindow *ui;
@@ -150,6 +152,8 @@ private:
   /// \brief record whether the rank has been updated, used as signal
   /// for rank page, if it is true. the rank table will surely be updated
   bool rank_updated = false;
+
+  bool query_updated = false;
 
   QStringList rankTableHeaders;
 
