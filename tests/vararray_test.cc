@@ -88,7 +88,7 @@ void VararrayTest::search_test() {
 bool VararrayTest::compare() const {
   for (int i = 0; i < ref.size(); i++) {
     if (dut[i] != ref[i]) {
-      qDebug() << i << "[dut]" << dut[i] << "[ref]" << ref[i];
+      qDebug() << i << "[dut]" << dut[i].c_str() << "[ref]" << ref[i].c_str();
     }
     Q_ASSERT(dut[i] == ref[i]);
   }

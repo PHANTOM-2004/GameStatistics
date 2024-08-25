@@ -122,13 +122,12 @@ public:
   /// \brief clear the vararray
   void clear();
 
-  /// \brief sort the vararray according to the comparator 
+  /// \brief sort the vararray according to the comparator
   /// \param comp the comparator to compare elements
   void sort(sort_functor comp);
 
   /// \brief sort the vararray with default '<'(std::less)
-  void sort()
-    requires Comparable<T>;
+  void sort() requires Comparable<T>;
 
   /// \brief insert to the vararray at pos with data
   /// \param pos the index to insert
@@ -155,8 +154,7 @@ public:
   /// require T to be Comparable and the vararray is sorted
   /// \param target the target to find
   /// \return the index of the target found; -1 when not found
-  size_type binary_search(const_reference target) const
-    requires Comparable<T>;
+  size_type binary_search(const_reference target) const requires Comparable<T>;
 
 private:
   /// \brief shrink the capacity of the vararray
@@ -171,7 +169,7 @@ private:
   /// \param new_capacity the new capacity to allocate
   void realloc(size_type const new_capacity = DEFAULT_CAPACITY);
 
-  /// \brief sort the vararray in range \[l, r) according to the comparator 
+  /// \brief sort the vararray in range \[l, r) according to the comparator
   /// \param l left side of the interval, included
   /// \param r right side of the interval, not included
   /// \param comp the comparator to compare elements
@@ -181,7 +179,7 @@ private:
   /// \param l left side of the interval, included
   /// \param r right side of the interval, not included
   /// \param comp the comparator to compare elements
-  /// \return return the index of pivot point 
+  /// \return return the index of pivot point
   rank_type partition(rank_type const l, rank_type const r, sort_functor comp);
 
   /// \brief get the max size of the vararray with the current capacity
@@ -327,7 +325,7 @@ template <typename T> void vararray<T>::reserve(size_type reserve_capacity) {
 }
 
 template <typename T>
-vararray<T>::pointer_type vararray<T>::insert(const rank_type pos,
+typename vararray<T>::pointer_type vararray<T>::insert(const rank_type pos,
                                               const_reference data) {
   Q_ASSERT(pos <= _size && pos >= 0);
 
@@ -366,7 +364,7 @@ template <typename T> bool vararray<T>::erase(const_reference target) {
 }
 
 template <typename T>
-vararray<T>::rank_type vararray<T>::find(const_reference target) const {
+typename vararray<T>::rank_type vararray<T>::find(const_reference target) const {
   for (rank_type i = 0; i < _size; i++)
     if (target == _data[i])
       return i;
@@ -374,9 +372,8 @@ vararray<T>::rank_type vararray<T>::find(const_reference target) const {
 }
 
 template <typename T>
-vararray<T>::rank_type vararray<T>::binary_search(const_reference target) const
-  requires Comparable<T>
-{
+typename vararray<T>::rank_type vararray<T>::binary_search(
+    const_reference target) const requires Comparable<T> {
   rank_type l = 0, r = _size;
   while (l < r) {
     rank_type const mid = (l + r) / 2;
@@ -392,7 +389,7 @@ vararray<T>::rank_type vararray<T>::binary_search(const_reference target) const
 }
 
 template <typename T>
-vararray<T>::rank_type vararray<T>::partition(rank_type const l,
+typename vararray<T>::rank_type vararray<T>::partition(rank_type const l,
                                               rank_type const r,
                                               sort_functor comp) {
   Q_ASSERT(l >= 0 && l < size());
@@ -443,10 +440,7 @@ template <typename T> void vararray<T>::sort(sort_functor comp) {
   sort_part(0, _size, comp);
 }
 
-template <typename T>
-void vararray<T>::sort()
-  requires Comparable<T>
-{
+template <typename T> void vararray<T>::sort() requires Comparable<T> {
   sort_part(0, _size, std::less<T>());
 }
 
