@@ -67,7 +67,7 @@ public:
   Sport(QString const &sport_name, SPORT_TYPE const type,
         SPORT_GENDER const gender = MEN);
 
-  /// \brief insert scored countris into the sport
+  /// \brief insert scored countries into the sport
   /// \param input the list of the countries to insert
   /// \return currently unused, return true
   bool insert_scored_country(dsa::vararray<country_score> const &input);
@@ -105,6 +105,8 @@ public:
   /// \return the points according to the rank of the sport
   int get_points(int const rank) const;
 
+  /// \brief const getter for countries ranking top3/5 in this sport
+  /// \return the const reference to the member vararray countries
   vararray<country_score> const &get_scored_countries() const {
     return countries;
   }

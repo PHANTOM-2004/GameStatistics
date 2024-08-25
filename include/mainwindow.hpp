@@ -130,19 +130,36 @@ private:
   void updateRankTable();
 
   // ==============================================================
+  /// \brief init the query page
   void initQueryPage();
 
+  /// \brief init the query table
   void initQueryTable();
 
+  /// \brief update the query table, slots for button search
   void updateQueryTable();
 
+  /// \brief update the query information, slots for 
+  /// currentIndexChanged in ComboBox
   void updateQueryInfo();
 
   // ==============================================================
+  //
+  /// \brief const getter for memebr statistic
+  /// \return const reference to member statistic
   dsa::Statistic const &get_statistic() const { return statistic; }
 
+  /// \brief set the format of the table, require items readonly and aligned at center
+  /// \param table pointer to the table to set
+  /// \param row row ranges : 0 to row (exclude row)
+  /// \param col col ranges : 0 to col (exclude col)
   void setTableFormat(QTableWidget *table, int const row, int const col);
 
+  /// \brief we lazily update the table according to the signals
+  ///
+  /// this function set the signals for score/rank update true, when 
+  /// they are false and when the selected country/sport is left unchanged
+  /// no change will be made to the table
   void updateSignals();
 
 private:
@@ -153,10 +170,14 @@ private:
   /// for rank page, if it is true. the rank table will surely be updated
   bool rank_updated = false;
 
+  /// \brief record whether the score has been updated, used as signal
+  /// for query page, if it is true. the query table will surely be updated
   bool query_updated = false;
 
+  /// \brief headers for rank table
   QStringList rankTableHeaders;
 
+  /// \brief headers for query table
   QStringList queryTableHeaders;
 
   /// \brief singleton for dsa::Statistic class

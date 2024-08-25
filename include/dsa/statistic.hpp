@@ -29,6 +29,9 @@ public:
   /// \return the count of sport array
   Sport const *sport_data() const { return SportList; }
 
+  /// \brief const getter for the reference of sport at index
+  /// \param index the index of the sport in the sport list
+  /// \return the const reference of the sport at index
   Sport const &sport(int const index) const {
     Q_ASSERT(index >= 0 && index < sport_count());
     return SportList[index];
@@ -38,6 +41,9 @@ public:
   /// \return the count of country array
   Country const *country_data() const { return CountryList; }
 
+  /// \brief const getter for the reference of country at index
+  /// \param index the index of the sport in the country list
+  /// \return the const reference of the country at index
   Country const &country(int const index) const {
     Q_ASSERT(index >= 0 && index < country_count());
     return CountryList[index];
