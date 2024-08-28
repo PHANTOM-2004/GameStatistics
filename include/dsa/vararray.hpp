@@ -341,7 +341,7 @@ typename vararray<T>::pointer_type vararray<T>::insert(const rank_type pos,
 }
 
 template <typename T> bool vararray<T>::erase_at(const rank_type pos) {
-  if (pos < 0 && pos >= _size)
+  if (!empty() && pos < 0 && pos >= _size)
     return false;
 
   for (rank_type i = pos; i < _size - 1; i++) {
